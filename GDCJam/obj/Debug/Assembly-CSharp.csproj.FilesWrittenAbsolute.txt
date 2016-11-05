@@ -1,0 +1,17 @@
+/Users/Ben/Documents/BitBucket/CSUNGameJam16/GDCJam/Temp/bin/Debug/Assembly-CSharp.dll.mdb
+/Users/Ben/Documents/BitBucket/CSUNGameJam16/GDCJam/Temp/bin/Debug/Assembly-CSharp.dll
+/Users/Ben/Documents/BitBucket/CSUNGameJam16/GDCJam/obj/Debug/Assembly-CSharp.dll
+/Users/Ben/Documents/BitBucket/CSUNGameJam16/GDCJam/obj/Debug/Assembly-CSharp.dll.mdb
+/Users/Ben/Documents/BitBucket/CSUNGameJam16/GDCJam/Temp/bin/Debug/UnityEngine.dll
+/Users/Ben/Documents/BitBucket/CSUNGameJam16/GDCJam/Temp/bin/Debug/UnityEditor.dll
+/Users/Ben/Documents/BitBucket/CSUNGameJam16/GDCJam/Temp/bin/Debug/UnityEngine.UI.dll
+/Users/Ben/Documents/BitBucket/CSUNGameJam16/GDCJam/Temp/bin/Debug/UnityEngine.Networking.dll
+/Users/Ben/Documents/BitBucket/CSUNGameJam16/GDCJam/Temp/bin/Debug/Mono.Cecil.dll
+/Users/Ben/Documents/BitBucket/CSUNGameJam16/GDCJam/Temp/bin/Debug/Unity.SerializationLogic.dll
+/Users/Ben/Documents/BitBucket/CSUNGameJam16/GDCJam/Temp/bin/Debug/Unity.DataContract.dll
+/Users/Ben/Documents/BitBucket/CSUNGameJam16/GDCJam/Temp/bin/Debug/ICSharpCode.NRefactory.dll
+/Users/Ben/Documents/BitBucket/CSUNGameJam16/GDCJam/Temp/bin/Debug/Unity.UNetWeaver.dll
+/Users/Ben/Documents/BitBucket/CSUNGameJam16/GDCJam/Temp/bin/Debug/Unity.UNetWeaver.dll.mdb
+/Users/Ben/Documents/BitBucket/CSUNGameJam16/GDCJam/Temp/bin/Debug/Unity.CecilTools.dll
+/Users/Ben/Documents/BitBucket/CSUNGameJam16/GDCJam/Temp/bin/Debug/Mono.Cecil.Pdb.dll
+/Users/Ben/Documents/BitBucket/CSUNGameJam16/GDCJam/Temp/bin/Debug/Mono.Cecil.Mdb.dll

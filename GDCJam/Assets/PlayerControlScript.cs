@@ -3,8 +3,8 @@ using System.Collections;
 
 public class PlayerControlScript : MonoBehaviour
 {
-    public Vector2 speed = new Vector2(50, 50);
-
+    public Vector2 speed = new Vector2(0.1f, 0.1f);
+    int number = 0;
     // Use this for initialization
     void Start()
     {
@@ -18,11 +18,14 @@ public class PlayerControlScript : MonoBehaviour
         float inputX = Input.GetAxis("Horizontal");
         float inputY = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(speed.x * inputX, speed.y * inputY, 0);
+        Vector3 movement = new Vector3(inputX, inputY, 0);
 
-        movement *= Time.deltaTime;
+        if (movement != Vector3.zero) {
+            transform.rotation = Quaternion.LookRotation (Vector3.forward, movement);
+        }
 
-        transform.Translate(movement);
+
+        transform.position = Vector3.MoveTowards (transform.position, transform.position + movement, 0.5f);
     }
 
 }
