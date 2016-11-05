@@ -16,13 +16,15 @@ public class PlayerHitDetection : MonoBehaviour {
 
     void OnTriggerEnter2D (Collider2D coll)
     {
-        Debug.Log ("poop");
         if (coll.tag == "Bar") {
             if (controlScript.state == PlayerControlScript.PlayerStates.Dashing) {
                 Destroy (coll.gameObject.transform.parent.gameObject);
             } else {
                 controlScript.state = PlayerControlScript.PlayerStates.Dying;
             }
+        }
+        if (coll.tag == "DeathCircle") {
+            controlScript.state = PlayerControlScript.PlayerStates.Dying;
         }
     }
 }
