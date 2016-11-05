@@ -18,6 +18,9 @@ public class PlayerHitDetection : MonoBehaviour {
     {
         if (coll.tag == "Bar") {
             if (controlScript.state == PlayerControlScript.PlayerStates.Dashing) {
+                Debug.Log ("Yo");
+                EnemyScript eScript = coll.gameObject.transform.GetComponentInParent<EnemyScript> ();
+                eScript.arms--;
                 Destroy (coll.gameObject.transform.parent.gameObject);
             } else {
                 controlScript.state = PlayerControlScript.PlayerStates.Dying;

@@ -53,6 +53,9 @@ public class PlayerControlScript : MonoBehaviour
                 time = Time.time;
                 state = PlayerStates.Dashing;
             }
+        } else if (state == PlayerStates.Dying) {
+            state = PlayerStates.Normal;
+            transform.position = Vector3.zero;
         }
         Debug.Log (state.ToString ());
     }
