@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerControlScript : MonoBehaviour
 {
-    public Vector2 speed = new Vector2(0.1f, 0.1f);
+    public float speed = 0.3f;
     int number = 0;
     // Use this for initialization
     void Start()
@@ -25,7 +25,7 @@ public class PlayerControlScript : MonoBehaviour
         }
 
 
-        transform.position = Vector3.MoveTowards (transform.position, transform.position + movement, 0.5f);
+        transform.position = Vector3.MoveTowards (transform.position, transform.position + movement, 0.3f);
     }
 
 }
