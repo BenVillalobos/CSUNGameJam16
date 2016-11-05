@@ -25,7 +25,7 @@ public class PlayerControlScript : MonoBehaviour
         }
 
 
-        transform.position = Vector3.MoveTowards (transform.position, transform.position + movement, 0.3f);
+        transform.position = Vector3.MoveTowards (transform.position, transform.position + movement, speed);
     }
 
 }
