@@ -23,6 +23,15 @@ public class PlayerControlScript : MonoBehaviour
     void Start()
     {
         time = Time.time;
+        Debug.Log ("Start");
+    }
+
+    void OnTriggerEnter2D (Collider2D coll)
+    {
+        if (coll.tag == "Bar") {
+            Destroy (coll.gameObject.transform.parent.gameObject);
+            Debug.Log ("Delete item");
+        }
     }
 
 // Update is called once per frame
@@ -59,5 +68,4 @@ public class PlayerControlScript : MonoBehaviour
         
         Debug.Log(state.ToString());
     }
-
 }
