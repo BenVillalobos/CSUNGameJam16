@@ -55,8 +55,8 @@ public class PlayerControlScript : MonoBehaviour
                 state = PlayerStates.Dashing;
             }
         } else if (state == PlayerStates.Dying) {
-            state = PlayerStates.Normal;
-            transform.position = Vector3.zero;
+            //TODO: Insert death animation here
+            state = PlayerStates.Dead;
         }
 
         Debug.Log (state.ToString ());
