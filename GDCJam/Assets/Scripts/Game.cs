@@ -14,11 +14,13 @@ public class Game : MonoBehaviour {
     public GameObject [] SpawnPoints;
     public GameObject BasicEnemy;
     public GameObject player;
+    public Canvas gameOverCanvas;
+    public Canvas gameCanvas;
     public Text scoreLabel;
     public Text livesLabel;
-    List<GameObject> allEnemies = new List<GameObject> ();
+    readonly List<GameObject> allEnemies = new List<GameObject> ();
     int lives = 3;
-    int score = 0;
+    public int score = 0;
     int multiplier = 1;
     PlayerHitDetection playerHitScript;
     PlayerControlScript playerControlScript;
@@ -30,30 +32,43 @@ public class Game : MonoBehaviour {
         playerHitScript = Player.GetComponent<PlayerHitDetection> ();
         playerHitScript.killEnemy = KillEnemy;
         playerControlScript = Player.GetComponent<PlayerControlScript> ();
+        gameOverCanvas.enabled = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
         if (Input.GetKeyDown (KeyCode.R)) {
-            SceneManager.LoadScene (2, LoadSceneMode.Single);
+            ResetGame ();
         }
         if (playerControlScript.state == PlayerControlScript.PlayerStates.Dead) {
             player.transform.position = Vector3.zero;
             lives--;
             livesLabel.text = string.Format ("Lives: {0}", lives);
+            DeleteAllEnemies ();
             if (lives <= 0) {
-                //switch off screens
+                gameCanvas.enabled = false;
+                gameOverCanvas.enabled = true;
                 playerControlScript.state = PlayerControlScript.PlayerStates.Dying;
             } else {
                 playerControlScript.state = PlayerControlScript.PlayerStates.Normal;
                 multiplier = 1;
-                foreach(GameObject enemy in allEnemies) {
-                    Destroy (enemy);
-                }
-                allEnemies.Clear ();
+                updateScore ();
             }
         }
 	}
+
+    public void ResetGame ()
+    {
+        SceneManager.LoadScene (2, LoadSceneMode.Single);
+    }
+
+    void DeleteAllEnemies ()
+    {
+        foreach (GameObject enemy in allEnemies) {
+            Destroy (enemy);
+        }
+        allEnemies.Clear ();
+    }
 
     public void KillEnemy (GameObject enemy)
     {

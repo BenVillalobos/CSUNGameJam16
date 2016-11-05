@@ -20,7 +20,6 @@ public class PlayerHitDetection : MonoBehaviour {
         if (coll.tag == "Bar") {
             if (controlScript.state == PlayerControlScript.PlayerStates.Dashing) {
                 killEnemy (coll.gameObject);
-
             } else {
                 controlScript.state = PlayerControlScript.PlayerStates.Dying;
             }

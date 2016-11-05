@@ -33,8 +33,6 @@ public class PlayerControlScript : MonoBehaviour
             float inputX = Input.GetAxis ("Horizontal");
             float inputY = Input.GetAxis ("Vertical");
 
-            float translation = Time.deltaTime * 10;
-
             Vector3 movement = new Vector3 (inputX, inputY, 0);
 
             if (movement != Vector3.zero) {
