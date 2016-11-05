@@ -8,7 +8,7 @@ public class EnemyTimer : MonoBehaviour {
     public Text TimerLabel;
 
     float timeGoneBy = 0;
-    public Game.GenerateEnemyDelegate generateAnEnemy;
+    public GenerateEnemyDelegate generateAnEnemy;
 
     // Use this for initialization
 	void Start () {
