@@ -8,6 +8,12 @@ public class PlayerControlScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        
+    }
+
+    public void onCollision2D ()
+    {
+        Debug.Log ("OMG");
     }
 
 // Update is called once per frame
@@ -24,8 +30,6 @@ public class PlayerControlScript : MonoBehaviour
             transform.rotation = Quaternion.LookRotation (Vector3.forward, movement);
         }
 
-
         transform.position = Vector3.MoveTowards (transform.position, transform.position + movement, speed);
     }
-
 }

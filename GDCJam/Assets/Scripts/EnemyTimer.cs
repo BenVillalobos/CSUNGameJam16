@@ -6,10 +6,9 @@ using System;
 public class EnemyTimer : MonoBehaviour {
     
     public Text TimerLabel;
-    public GameObject [] SpawnPoints;
-    public GameObject BasicEnemy;
-    public GameObject player;
+
     float timeGoneBy = 0;
+    public Game.GenerateEnemyDelegate generateAnEnemy;
 
     // Use this for initialization
 	void Start () {
@@ -23,10 +22,7 @@ public class EnemyTimer : MonoBehaviour {
 
         if (timeGoneBy >= 2) {
             timeGoneBy = 0;
-            GameObject newEnemy = (GameObject)Instantiate (BasicEnemy, SpawnPoints [UnityEngine.Random.Range (0, SpawnPoints.Length)].transform.position, Quaternion.identity);
-
-            EnemyScript newScript = newEnemy.GetComponent<EnemyScript> ();
-            newScript.Player = player;
+            generateAnEnemy ();
         }
 	}
 }
