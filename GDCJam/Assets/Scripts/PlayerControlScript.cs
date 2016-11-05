@@ -43,13 +43,14 @@ public class PlayerControlScript : MonoBehaviour
 
             transform.position = Vector3.MoveTowards (transform.position, transform.position + movement, speed);
 
-            if (Time.time <= time + elapsedTime) {
+            if (Time.time <= time + elapsedTime)
+            {
                 transform.position = Vector3.MoveTowards (transform.position, transform.position + movement, dashSpeed);
             } else if (state == PlayerStates.Dashing) {
                 state = PlayerStates.Normal;
             }
 
-            if (Input.GetButtonDown ("Fire1")) {
+            if (Input.GetButtonDown("Xbox Right Shoulder Button") || Input.GetButtonDown("Xbox Left Shoulder Button")) {
                 time = Time.time;
                 state = PlayerStates.Dashing;
             }
@@ -57,6 +58,7 @@ public class PlayerControlScript : MonoBehaviour
             state = PlayerStates.Normal;
             transform.position = Vector3.zero;
         }
+
         Debug.Log (state.ToString ());
     }
 }
