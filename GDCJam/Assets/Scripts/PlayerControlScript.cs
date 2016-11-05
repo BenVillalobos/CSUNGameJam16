@@ -3,8 +3,21 @@ using System.Collections;
 
 public class PlayerControlScript : MonoBehaviour
 {
-    public float speed = 0.1f;
+    public float speed = 0.08f;
+    public float dashSpeed = 0.1f;
+    public float elapsedTime = 0.4f;
     private float time;
+
+    public enum PlayerStates
+    {
+        Normal,
+        Dashing,
+        Dying,
+        Dead,
+        PowerUp
+    };
+
+    public PlayerStates state = PlayerStates.Normal;
 
     // Use this for initialization
     void Start()
@@ -17,7 +30,7 @@ public class PlayerControlScript : MonoBehaviour
     {
         float inputX = Input.GetAxis("Horizontal");
         float inputY = Input.GetAxis("Vertical");
-        float dashSpeed = 0.2f;
+        
         float translation = Time.deltaTime*10;
 
         Vector3 movement = new Vector3(inputX, inputY, 0);
@@ -29,13 +42,22 @@ public class PlayerControlScript : MonoBehaviour
 
         transform.position = Vector3.MoveTowards (transform.position, transform.position + movement, speed);
 
+        if (Time.time <= time + elapsedTime)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, transform.position + movement, dashSpeed);
+        }
+        else if (state == PlayerStates.Dashing)
+        {
+            state = PlayerStates.Normal;
+        }
+
         if (Input.GetButtonDown("Fire1"))
         {
-            if (Time.time >= time + 1f)
-            {
-                //code something
-                time = Time.time;
-            }
+            time = Time.time;
+            state = PlayerStates.Dashing;
+        }
+        
+        Debug.Log(state.ToString());
     }
 
 }
