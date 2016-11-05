@@ -7,7 +7,6 @@ public class Game : MonoBehaviour {
     public delegate void GenerateEnemyDelegate ();
     EnemyTimer timer;
     public GameObject Player;
-    public List<GameObject> AllEnemies;
     public GameObject [] SpawnPoints;
     public GameObject BasicEnemy;
     public GameObject player;

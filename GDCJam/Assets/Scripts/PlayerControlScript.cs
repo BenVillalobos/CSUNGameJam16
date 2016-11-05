@@ -10,11 +10,15 @@ public class PlayerControlScript : MonoBehaviour
     void Start()
     {
         time = Time.time;
+        Debug.Log ("Start");
     }
 
-    public void onCollision2D ()
+    void OnTriggerEnter2D (Collider2D coll)
     {
-        Debug.Log ("OMG");
+        if (coll.tag == "Bar") {
+            Destroy (coll.gameObject.transform.parent.gameObject);
+            Debug.Log ("Delete item");
+        }
     }
 
 // Update is called once per frame
