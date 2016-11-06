@@ -46,7 +46,6 @@ public class SoundScript : MonoBehaviour {
         {
             source.Stop();
             source.PlayOneShot(gameOver);
-            
         }
         else if(audio == AudioToPlay.Dash)
         {
