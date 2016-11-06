@@ -35,8 +35,8 @@ public class PlayerControlScript : MonoBehaviour
     {
         if (state != PlayerStates.Dying && state != PlayerStates.Dead)
         {
-            float inputX = Input.GetAxis ("Horizontal");
-            float inputY = Input.GetAxis ("Vertical");
+            float inputX = Input.GetAxisRaw ("Horizontal");
+            float inputY = Input.GetAxisRaw ("Vertical");
 
             Vector3 movement = new Vector3 (inputX, inputY, 0);
 
@@ -53,7 +53,7 @@ public class PlayerControlScript : MonoBehaviour
                 state = PlayerStates.Normal;
             }
 
-            if ((Input.GetButtonDown("Xbox Right Shoulder Button") || Input.GetButtonDown("Xbox Left Shoulder Button")) && state != PlayerStates.Dashing)
+            if ((Input.GetButtonDown("Xbox Right Shoulder Button") || Input.GetButtonDown("Xbox Left Shoulder Button")) || Input.GetButtonDown("Fire1") || Input.GetButtonDown("Fire3") && state != PlayerStates.Dashing)
             {
                 Dash();
                 time = Time.time;
