@@ -39,6 +39,9 @@ public class Game : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        Camera.main.transform.position = new Vector3 (player.transform.position.x, player.transform.position.y, Camera.main.transform.position.z);
+
         if (Input.GetKeyDown (KeyCode.R)) {
             ResetGame ();
         }

@@ -42,14 +42,13 @@ public class SoundScript : MonoBehaviour {
 
     public void PlaySong(AudioToPlay audio)
     {
-        if(audio == AudioToPlay.GameOver)
-        {
-            source.Stop();
-            source.PlayOneShot(gameOver);
-        }
-        else if(audio == AudioToPlay.Dash)
-        {
-            source.PlayOneShot(dash);
+        if (audio == AudioToPlay.GameOver) {
+            source.Stop ();
+            source.PlayOneShot (gameOver);
+        } else if (audio == AudioToPlay.Dash) {
+            source.PlayOneShot (dash);
+        } else if (audio == AudioToPlay.Destroy) {
+            source.PlayOneShot (destroy);
         }
     }
 

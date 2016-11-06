@@ -5,11 +5,13 @@ public class PlayerHitDetection : MonoBehaviour {
 
     public KillEnemyDelegate killEnemy;
     PlayerControlScript controlScript;
-    public SoundScript sounds;
+    SoundScript sounds;
+    public Camera mainCam;
 
 	// Use this for initialization
 	void Start () {
         controlScript = GetComponentInParent<PlayerControlScript> ();
+        sounds = mainCam.GetComponent<SoundScript> ();
 	}
 	
 	// Update is called once per frame
