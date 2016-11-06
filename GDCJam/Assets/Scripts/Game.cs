@@ -50,7 +50,6 @@ public class Game : MonoBehaviour {
             if (lives <= 0) {
                 gameCanvas.enabled = false;
                 gameOverCanvas.enabled = true;
-                playerControlScript.state = PlayerControlScript.PlayerStates.Dying;
             } else {
                 playerControlScript.state = PlayerControlScript.PlayerStates.Normal;
                 multiplier = 1;

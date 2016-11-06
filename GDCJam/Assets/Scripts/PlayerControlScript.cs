@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public delegate void PlayDashDelegate();
+
 public class PlayerControlScript : MonoBehaviour
 {
     public float speed = 0.08f;
     public float dashSpeed = 0.1f;
     public float elapsedTime = 0.4f;
     private float time;
+    public PlayDashDelegate playDash;
 
     public enum PlayerStates
     {
@@ -27,7 +30,7 @@ public class PlayerControlScript : MonoBehaviour
         Debug.Log ("Start");
     }
 
-// Update is called once per frame
+    // Update is called once per frame
     void Update()
     {
         if (state != PlayerStates.Dying && state != PlayerStates.Dead)
@@ -46,20 +49,27 @@ public class PlayerControlScript : MonoBehaviour
             if (Time.time <= time + elapsedTime)
             {
                 transform.position = Vector3.MoveTowards (transform.position, transform.position + movement, dashSpeed);
-            } else if (state == PlayerStates.Dashing) {
+            } else if (state == PlayerStates.Dashing && Time.time >= time + elapsedTime) {
                 state = PlayerStates.Normal;
             }
 
-            if (Input.GetButtonDown("Xbox Right Shoulder Button") || Input.GetButtonDown("Xbox Left Shoulder Button"))
+            if ((Input.GetButtonDown("Xbox Right Shoulder Button") || Input.GetButtonDown("Xbox Left Shoulder Button")) && state != PlayerStates.Dashing)
             {
+                Dash();
                 time = Time.time;
-                state = PlayerStates.Dashing;
             }
+
         } else if (state == PlayerStates.Dying) {
             //TODO: Insert death animation here
             state = PlayerStates.Dead;
         }
 
         Debug.Log (state.ToString ());
+    }
+
+    public void Dash()
+    {
+        playDash();
+        state = PlayerStates.Dashing;
     }
 }

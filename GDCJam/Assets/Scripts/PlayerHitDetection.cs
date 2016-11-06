@@ -5,6 +5,8 @@ public class PlayerHitDetection : MonoBehaviour {
 
     public KillEnemyDelegate killEnemy;
     PlayerControlScript controlScript;
+    public SoundScript sounds;
+
 	// Use this for initialization
 	void Start () {
         controlScript = GetComponentInParent<PlayerControlScript> ();
@@ -20,6 +22,7 @@ public class PlayerHitDetection : MonoBehaviour {
         if (coll.tag == "Bar") {
             if (controlScript.state == PlayerControlScript.PlayerStates.Dashing) {
                 killEnemy (coll.gameObject);
+                sounds.PlaySong(AudioToPlay.Destroy);
             } else {
                 controlScript.state = PlayerControlScript.PlayerStates.Dying;
             }
