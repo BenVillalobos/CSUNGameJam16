@@ -11,14 +11,14 @@ public class Game : MonoBehaviour {
 
     EnemyTimer timer;
     public GameObject Player;
-    public GameObject [] SpawnPoints;
     public GameObject BasicEnemy;
     public GameObject player;
     public Canvas gameOverCanvas;
     public Canvas gameCanvas;
     public Text scoreLabel;
     public Text livesLabel;
-    readonly List<GameObject> allEnemies = new List<GameObject> ();
+    EnemySpawner spawner;
+    public readonly List<GameObject> allEnemies = new List<GameObject> ();
     int lives = 3;
     public int score = 0;
     int multiplier = 1;
@@ -33,6 +33,8 @@ public class Game : MonoBehaviour {
         playerHitScript.killEnemy = KillEnemy;
         playerControlScript = Player.GetComponent<PlayerControlScript> ();
         gameOverCanvas.enabled = false;
+
+        spawner = GetComponent<EnemySpawner> ();
 	}
 	
 	// Update is called once per frame
@@ -90,9 +92,10 @@ public class Game : MonoBehaviour {
 
     public void GenerateEnemy ()
     {
-        GameObject newEnemy = (GameObject)Instantiate (BasicEnemy, SpawnPoints [UnityEngine.Random.Range (0, SpawnPoints.Length)].transform.position, Quaternion.identity);
-        EnemyScript newScript = newEnemy.GetComponent<EnemyScript> ();
-        newScript.Player = player;
-        allEnemies.Add (newEnemy);
+        //GameObject newEnemy = (GameObject)Instantiate (BasicEnemy, SpawnPoints [UnityEngine.Random.Range (0, SpawnPoints.Length)].transform.position, Quaternion.identity);
+        //EnemyScript newScript = newEnemy.GetComponent<EnemyScript> ();
+        //newScript.Player = player;
+        //allEnemies.Add (newEnemy);
+        spawner.GenerateRandomEnemy ();
     }
 }

@@ -1,10 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum EnemyType
+{
+    Basic,
+    FourArm
+}
 public class EnemyScript : MonoBehaviour {
 
     public GameObject Player;
-    public float speed = 0.01f;
+    public float speed = 0.06f;
     public int arms = 0;
     public int rotateDirection = 1;
     public  int score = 100;
