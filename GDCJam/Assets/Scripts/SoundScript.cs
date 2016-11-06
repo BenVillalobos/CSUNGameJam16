@@ -33,23 +33,29 @@ public class SoundScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (game.gameOverCanvas.isActiveAndEnabled)
-        {
-            PlaySong(AudioToPlay.GameOver);
-        }
         
 	}
 
     public void PlaySong(AudioToPlay audio)
     {
-        if (audio == AudioToPlay.GameOver) {
-            source.Stop ();
+        switch (audio) {
+        case AudioToPlay.GameOver:
             source.PlayOneShot (gameOver);
-        } else if (audio == AudioToPlay.Dash) {
+            break;
+        case AudioToPlay.Dash:
             source.PlayOneShot (dash);
-        } else if (audio == AudioToPlay.Destroy) {
+            break;
+        case AudioToPlay.Destroy:
             source.PlayOneShot (destroy);
+            break;
         }
+    }
+
+    public void GameOver()
+    {
+        source.loop = false;
+        source.clip = gameOver;
+        source.Play ();
     }
 
     void PlayDash()

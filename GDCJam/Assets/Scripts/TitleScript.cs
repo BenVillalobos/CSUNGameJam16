@@ -4,11 +4,13 @@ using UnityEngine.SceneManagement;
 
 public class TitleScript : MonoBehaviour
 {
-
+    public Canvas titleCanvas;
+    public Canvas storyCanvas;
     // Use this for initialization
     void Start ()
     {
-
+        storyCanvas.enabled = false;
+        storyCanvas.GetComponent<StoryScript> ().enabled = false;
     }
 
     // Update is called once per frame
@@ -19,6 +21,8 @@ public class TitleScript : MonoBehaviour
 
     public void BeginPressed ()
     {
-        SceneManager.LoadScene (1, LoadSceneMode.Single);
+        storyCanvas.enabled = true;
+        storyCanvas.GetComponent<StoryScript> ().enabled = true;
+        titleCanvas.enabled = false;
     }
 }
