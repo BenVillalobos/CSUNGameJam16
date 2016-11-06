@@ -29,7 +29,8 @@ public class PlayerControlScript : MonoBehaviour
 // Update is called once per frame
     void Update()
     {
-        if (state != PlayerStates.Dying && state != PlayerStates.Dead) {
+        if (state != PlayerStates.Dying && state != PlayerStates.Dead)
+        {
             float inputX = Input.GetAxis ("Horizontal");
             float inputY = Input.GetAxis ("Vertical");
 
@@ -48,7 +49,8 @@ public class PlayerControlScript : MonoBehaviour
                 state = PlayerStates.Normal;
             }
 
-            if (Input.GetButtonDown("Xbox Right Shoulder Button") || Input.GetButtonDown("Xbox Left Shoulder Button")) {
+            if (Input.GetButtonDown("Xbox Right Shoulder Button") || Input.GetButtonDown("Xbox Left Shoulder Button"))
+            {
                 time = Time.time;
                 state = PlayerStates.Dashing;
             }
