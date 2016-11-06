@@ -3,10 +3,12 @@ using System.Collections;
 
 public class Arcaine : MonoBehaviour {
 
+    Animator animator;
+
     // Use this for initialization
     void Start ()
     {
-
+        animator = GetComponent<Animator>();
     }
 	
 	// Update is called once per frame
@@ -20,6 +22,12 @@ public class Arcaine : MonoBehaviour {
         if (collision.CompareTag("Player"))
         {
             Debug.Log("Picked up Arcaine");
+            animator.SetBool("death", true);
+            //animator.Play("ArcainePickUp");
+            //Invoke("ArcainePickedUp", 1);
+            //animator.SetTrigger("death");
+            //animator.GetBool("death");
+            //GetComponent<Animation>().
             GameObject.Destroy(this.gameObject);
         }
     }
