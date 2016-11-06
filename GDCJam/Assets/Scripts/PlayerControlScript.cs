@@ -14,7 +14,8 @@ public class PlayerControlScript : MonoBehaviour
         Dashing,
         Dying,
         Dead,
-        PowerUp
+        DogWeed,
+        Arcaine
     };
 
     public PlayerStates state = PlayerStates.Normal;
