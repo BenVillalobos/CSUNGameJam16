@@ -23,8 +23,6 @@ public class GameOverCanvasScript : MonoBehaviour {
         scoreLabel.text = string.Format ("Score: {0}", gameScript.score);
         timeGoneBy += Time.deltaTime;
 
-        Nixon.transform.Rotate (Vector3.forward, 1);
-        Ussr.transform.Rotate (Vector3.forward, 1);
 
         if (timeGoneBy >= flashTime) {
             timeGoneBy = 0;

@@ -8,6 +8,8 @@ public delegate void GenerateEnemyDelegate ();
 public delegate void KillEnemyDelegate (GameObject enemy);
 
 public class Game : MonoBehaviour {
+    public static float enemySpeed = 0.1f;
+    public static float rotationSpeed = 1;
 
     EnemyTimer timer;
     public GameObject Player;
@@ -23,8 +25,7 @@ public class Game : MonoBehaviour {
     public int score = 0;
     int multiplier = 1;
     PlayerHitDetection playerHitScript;
-    PlayerControlScript playerControlScript;
-    float timeGoneBy = 0;
+    public PlayerControlScript playerControlScript;
 	// Use this for initialization
 	void Start () {
         timer = GetComponentInParent<EnemyTimer> ();
@@ -40,7 +41,6 @@ public class Game : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        timeGoneBy += Time.deltaTime;
         Camera.main.transform.position = new Vector3 (player.transform.position.x, player.transform.position.y, Camera.main.transform.position.z);
 
         if (Input.GetKeyDown (KeyCode.R)) {
@@ -59,6 +59,12 @@ public class Game : MonoBehaviour {
                 multiplier = 1;
                 updateScore ();
             }
+        } else if (playerControlScript.state == PlayerControlScript.PlayerStates.DogWeed) {
+            enemySpeed = 0.01f;
+            rotationSpeed = 0.01f;
+        } else {
+            enemySpeed = 0.09f;
+            rotationSpeed = 1f;
         }
 	}
 

@@ -12,6 +12,7 @@ public class PlayerControlScript : MonoBehaviour
     float dashTimer = 0;
     private float time;
     public PlayDashDelegate playDash;
+    public GameObject rotatingPart;
 
     public enum PlayerStates
     {
@@ -30,6 +31,7 @@ public class PlayerControlScript : MonoBehaviour
     {
         time = Time.time;
         Debug.Log ("Start");
+
     }
 
     // Update is called once per frame
@@ -44,7 +46,7 @@ public class PlayerControlScript : MonoBehaviour
             Vector3 movement = new Vector3 (inputX, inputY, 0);
 
             if (movement != Vector3.zero) {
-                transform.rotation = Quaternion.LookRotation (Vector3.forward, movement);
+                rotatingPart.transform.rotation = Quaternion.LookRotation (Vector3.forward, -movement);
             }
 
             transform.position = Vector3.MoveTowards (transform.position, transform.position + movement, speed);

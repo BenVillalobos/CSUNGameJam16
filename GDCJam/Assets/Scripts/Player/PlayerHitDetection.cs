@@ -27,7 +27,11 @@ public class PlayerHitDetection : MonoBehaviour {
             if (controlScript.state == PlayerControlScript.PlayerStates.Dashing) {
                 killEnemy (coll.gameObject);
                 sounds.PlaySong(AudioToPlay.Destroy);
+            } 
+            else if(coll.tag == "Dogweed") {
+                controlScript.state = PlayerControlScript.PlayerStates.DogWeed;
             } else {
+
                 controlScript.state = PlayerControlScript.PlayerStates.Dying;
                 if (game.lives <= 0) {
                     sounds.GameOver ();
