@@ -26,7 +26,6 @@ public class PlayerHitDetection : MonoBehaviour {
     void OnTriggerEnter2D (Collider2D coll)
     {
         if (coll.tag == "Bar") {
-            if (controlScript.state == PlayerControlScript.PlayerStates.Dashing) {
                 killEnemy (coll.gameObject);
                 sounds.PlaySong (AudioToPlay.Destroy);
                 if (Random.Range (0, 15) == 1) {
@@ -37,14 +36,8 @@ public class PlayerHitDetection : MonoBehaviour {
                     Instantiate
                     (arcaine, coll.transform.position, Quaternion.identity);
                 }
-            } else {
-                controlScript.state = PlayerControlScript.PlayerStates.Dying;
-                if (game.lives <= 0) {
-                    sounds.GameOver ();
-                    return;
-                }
                 sounds.PlaySong (AudioToPlay.GameOver);
-            }
+
         } else if (coll.tag == "DeathCircle") {
             if (controlScript.state == PlayerControlScript.PlayerStates.DogWeed) {
                 sounds.PlaySong (AudioToPlay.SongA);
