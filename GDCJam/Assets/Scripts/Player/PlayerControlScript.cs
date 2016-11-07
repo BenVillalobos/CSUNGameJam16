@@ -21,7 +21,8 @@ public class PlayerControlScript : MonoBehaviour
         Dying,
         Dead,
         DogWeed,
-        Arcaine
+        Arcaine,
+        GameOver
     };
 
     public PlayerStates state = PlayerStates.Normal;
@@ -37,40 +38,38 @@ public class PlayerControlScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        dashTimer += Time.deltaTime;
-        if (state != PlayerStates.Dying && state != PlayerStates.Dead)
-        {
-            float inputX = Input.GetAxisRaw ("Horizontal");
-            float inputY = Input.GetAxisRaw ("Vertical");
+        if (state != PlayerStates.GameOver) {
+            dashTimer += Time.deltaTime;
+            if (state != PlayerStates.Dying && state != PlayerStates.Dead) {
+                float inputX = Input.GetAxisRaw ("Horizontal");
+                float inputY = Input.GetAxisRaw ("Vertical");
 
-            Vector3 movement = new Vector3 (inputX, inputY, 0);
+                Vector3 movement = new Vector3 (inputX, inputY, 0);
 
-            if (movement != Vector3.zero) {
-                rotatingPart.transform.rotation = Quaternion.LookRotation (Vector3.forward, -movement);
+                if (movement != Vector3.zero) {
+                    rotatingPart.transform.rotation = Quaternion.LookRotation (Vector3.forward, -movement);
+                }
+
+                transform.position = Vector3.MoveTowards (transform.position, transform.position + movement, speed);
+
+                if (Time.time <= time + elapsedTime) {
+                    transform.position = Vector3.MoveTowards (transform.position, transform.position + movement, dashSpeed);
+                } else if (state == PlayerStates.Dashing && Time.time >= time + elapsedTime) {
+                    state = PlayerStates.Normal;
+                }
+
+                if ((Input.GetButtonDown ("Xbox Right Shoulder Button") || Input.GetButtonDown ("Xbox Left Shoulder Button") || Input.GetButtonDown ("Fire1") || Input.GetButtonDown ("Fire3")) && state != PlayerStates.Dashing && dashTimer >= dashCooldown) {
+                    Dash ();
+                    time = Time.time;
+                    dashTimer = 0;
+                }
+
+            } else if (state == PlayerStates.Dying) {
+                //TODO: Insert death animation here
+                state = PlayerStates.Dead;
+                dashTimer = 100;
             }
-
-            transform.position = Vector3.MoveTowards (transform.position, transform.position + movement, speed);
-
-            if (Time.time <= time + elapsedTime)
-            {
-                transform.position = Vector3.MoveTowards (transform.position, transform.position + movement, dashSpeed);
-            } else if (state == PlayerStates.Dashing && Time.time >= time + elapsedTime) {
-                state = PlayerStates.Normal;
-            }
-
-            if ((Input.GetButtonDown("Xbox Right Shoulder Button") || Input.GetButtonDown("Xbox Left Shoulder Button") || Input.GetButtonDown("Fire1") || Input.GetButtonDown("Fire3")) && state != PlayerStates.Dashing && dashTimer >= dashCooldown)
-            {
-                Dash();
-                time = Time.time;
-                dashTimer = 0;
-            }
-
-        } else if (state == PlayerStates.Dying) {
-            //TODO: Insert death animation here
-            state = PlayerStates.Dead;
         }
-
-        Debug.Log (state.ToString ());
     }
 
     public void Dash()

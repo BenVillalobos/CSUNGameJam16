@@ -7,6 +7,7 @@ public class PlayerHitDetection : MonoBehaviour {
     PlayerControlScript controlScript;
     public SoundScript sounds;
     public Camera mainCam;
+    public GameObject dogWeed;
     Game game;
 
 	// Use this for initialization
@@ -27,11 +28,11 @@ public class PlayerHitDetection : MonoBehaviour {
             if (controlScript.state == PlayerControlScript.PlayerStates.Dashing) {
                 killEnemy (coll.gameObject);
                 sounds.PlaySong(AudioToPlay.Destroy);
-            } 
-            else if(coll.tag == "Dogweed") {
-                controlScript.state = PlayerControlScript.PlayerStates.DogWeed;
-            } else {
-
+                if (Random.Range (0, 15) == 1) {
+                    Instantiate
+                    (dogWeed, coll.transform.position, Quaternion.identity);
+                }
+            }  else {
                 controlScript.state = PlayerControlScript.PlayerStates.Dying;
                 if (game.lives <= 0) {
                     sounds.GameOver ();
@@ -40,9 +41,19 @@ public class PlayerHitDetection : MonoBehaviour {
                 sounds.PlaySong (AudioToPlay.GameOver);
             }
         }
-        if (coll.tag == "DeathCircle") {
+        else if (coll.tag == "DeathCircle") {
+            if (controlScript.state == PlayerControlScript.PlayerStates.DogWeed) {
+                sounds.PlaySong (AudioToPlay.SongA);
+            }
             controlScript.state = PlayerControlScript.PlayerStates.Dying;
             sounds.PlaySong (AudioToPlay.GameOver);
+
+        } else if (coll.tag == "Dogweed") {
+            if (controlScript.state == PlayerControlScript.PlayerStates.DogWeed) {
+                sounds.PlaySong (AudioToPlay.SongA);
+            }
+            controlScript.state = PlayerControlScript.PlayerStates.DogWeed;
+            sounds.PlaySong (AudioToPlay.SongB);
         }
     }
 }

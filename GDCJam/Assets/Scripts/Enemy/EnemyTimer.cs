@@ -9,6 +9,8 @@ public class EnemyTimer : MonoBehaviour {
 
     float timeGoneBy = 0;
     float timeForGame = 0;
+    public float TimePerGeneration = 2;
+
     public GenerateEnemyDelegate generateAnEnemy;
 
     // Use this for initialization
@@ -22,7 +24,7 @@ public class EnemyTimer : MonoBehaviour {
         timeGoneBy += Time.deltaTime;
         timeForGame += Time.deltaTime;
 
-        if (timeGoneBy >= 2) {
+        if (timeGoneBy >= TimePerGeneration) {
             timeGoneBy = 0;
             generateAnEnemy ();
         }

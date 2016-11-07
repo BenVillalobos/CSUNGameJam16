@@ -20,11 +20,14 @@ public class EnemySpawner : MonoBehaviour {
 
     public void GenerateRandomEnemy ()
     {
-        GameObject newEnemy = (GameObject)Instantiate 
-            (AllEnemyTypes[UnityEngine.Random.Range(0, AllEnemyTypes.Length)], 
+        if (game.playerControlScript.state != PlayerControlScript.PlayerStates.GameOver) {
+            GameObject newEnemy = (GameObject)Instantiate
+            (AllEnemyTypes [UnityEngine.Random.Range (0, AllEnemyTypes.Length)],
              SpawnPoints [UnityEngine.Random.Range (0, SpawnPoints.Length)].transform.position, Quaternion.identity);
-        EnemyScript newScript = newEnemy.GetComponent<EnemyScript> ();
-        newScript.Player = game.player;
-        game.allEnemies.Add (newEnemy);
+            EnemyScript newScript = newEnemy.GetComponent<EnemyScript> ();
+            newScript.Player = game.player;
+            game.allEnemies.Add (newEnemy);
+        }
+
     }
 }

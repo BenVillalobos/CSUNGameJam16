@@ -48,6 +48,14 @@ public class SoundScript : MonoBehaviour {
         case AudioToPlay.Destroy:
             source.PlayOneShot (destroy);
             break;
+        case AudioToPlay.SongA:
+            source.clip = songA;
+            source.Play ();
+            break;
+        case AudioToPlay.SongB:
+            source.clip = songB;
+            source.Play ();
+            break;
         }
     }
 

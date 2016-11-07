@@ -9,7 +9,6 @@ public class GameOverCanvasScript : MonoBehaviour {
     public GameObject Ussr;
     Game gameScript;
     public Text scoreLabel;
-    public float flashTime = 1.5f;
     float timeGoneBy = 0;
 
 	// Use this for initialization
@@ -24,9 +23,5 @@ public class GameOverCanvasScript : MonoBehaviour {
         timeGoneBy += Time.deltaTime;
 
 
-        if (timeGoneBy >= flashTime) {
-            timeGoneBy = 0;
-            scoreLabel.enabled = !scoreLabel.enabled;
-        }
 	}
 }

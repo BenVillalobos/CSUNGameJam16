@@ -11,6 +11,9 @@ public class Game : MonoBehaviour {
     public static float enemySpeed = 0.1f;
     public static float rotationSpeed = 1;
 
+    public GameObject Floor2;
+    public GameObject Floor1;
+
     EnemyTimer timer;
     public GameObject Player;
     public GameObject BasicEnemy;
@@ -19,12 +22,15 @@ public class Game : MonoBehaviour {
     public Canvas gameCanvas;
     public Text scoreLabel;
     public Text livesLabel;
+    public float dogweedTimer = 0;
+    public float dogWeedDuration = 18.52f;
     EnemySpawner spawner;
     public readonly List<GameObject> allEnemies = new List<GameObject> ();
     public int lives = 3;
     public int score = 0;
     int multiplier = 1;
     PlayerHitDetection playerHitScript;
+    SoundScript sound;
     public PlayerControlScript playerControlScript;
 	// Use this for initialization
 	void Start () {
@@ -34,9 +40,9 @@ public class Game : MonoBehaviour {
         playerHitScript.killEnemy = KillEnemy;
         playerControlScript = Player.GetComponent<PlayerControlScript> ();
         gameOverCanvas.enabled = false;
-
+        sound = GetComponentInParent<SoundScript> ();
         spawner = GetComponent<EnemySpawner> ();
-
+        Floor2.SetActive (false);
 	}
 	
 	// Update is called once per frame
@@ -48,20 +54,34 @@ public class Game : MonoBehaviour {
         }
         if (playerControlScript.state == PlayerControlScript.PlayerStates.Dead) {
             player.transform.position = Vector3.zero;
+            playerControlScript.state = PlayerControlScript.PlayerStates.Normal;
+            sound.PlaySong (AudioToPlay.SongA);
+            Floor1.SetActive (true);
+            Floor2.SetActive (false);
+            timer.TimePerGeneration = 2;
             lives--;
             livesLabel.text = string.Format ("Lives: {0}", lives);
             DeleteAllEnemies ();
             if (lives <= 0) {
                 gameCanvas.enabled = false;
                 gameOverCanvas.enabled = true;
+                playerControlScript.state = PlayerControlScript.PlayerStates.GameOver;
             } else {
                 playerControlScript.state = PlayerControlScript.PlayerStates.Normal;
                 multiplier = 1;
                 updateScore ();
             }
         } else if (playerControlScript.state == PlayerControlScript.PlayerStates.DogWeed) {
-            enemySpeed = 0.01f;
-            rotationSpeed = 0.01f;
+            SwitchToDogweed ();
+            dogweedTimer += Time.deltaTime;
+            if (dogweedTimer >= dogWeedDuration) {
+                playerControlScript.state = PlayerControlScript.PlayerStates.Normal;
+                sound.PlaySong (AudioToPlay.SongA);
+                Floor1.SetActive (true);
+                Floor2.SetActive (false);
+                timer.TimePerGeneration = 2;
+                //switch floor back to normal;
+            }
         } else {
             enemySpeed = 0.09f;
             rotationSpeed = 1f;
@@ -71,6 +91,15 @@ public class Game : MonoBehaviour {
     public void ResetGame ()
     {
         SceneManager.LoadScene (3, LoadSceneMode.Single);
+    }
+
+    public void SwitchToDogweed ()
+    {
+        enemySpeed = 0.01f;
+        rotationSpeed = 0.5f;
+        Floor2.SetActive (true);
+        timer.TimePerGeneration = 100;
+        //switch floor
     }
 
     void DeleteAllEnemies ()
