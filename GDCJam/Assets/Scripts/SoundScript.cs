@@ -8,7 +8,8 @@ public enum AudioToPlay
     SongC,
     GameOver,
     Destroy,
-    Dash
+    Dash,
+    OneUp
 }
 public class SoundScript : MonoBehaviour {
 
@@ -21,6 +22,7 @@ public class SoundScript : MonoBehaviour {
     public AudioClip destroy;
     public AudioClip dash;
     public GameObject player;
+    public AudioClip oneUp;
     AudioSource source;
 
     // Use this for initialization
@@ -55,6 +57,9 @@ public class SoundScript : MonoBehaviour {
         case AudioToPlay.SongB:
             source.clip = songB;
             source.Play ();
+            break;
+        case AudioToPlay.OneUp:
+            source.PlayOneShot (oneUp);
             break;
         }
     }

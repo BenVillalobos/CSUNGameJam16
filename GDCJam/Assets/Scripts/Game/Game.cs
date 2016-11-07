@@ -13,7 +13,6 @@ public class Game : MonoBehaviour {
 
     public GameObject Floor2;
     public GameObject Floor1;
-
     EnemyTimer timer;
     public GameObject Player;
     public GameObject BasicEnemy;

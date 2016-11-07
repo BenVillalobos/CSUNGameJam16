@@ -21,7 +21,6 @@ public class Arcaine : MonoBehaviour {
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("Picked up Arcaine");
             animator.SetBool("death", true);
             //animator.Play("ArcainePickUp");
             //Invoke("ArcainePickedUp", 1);

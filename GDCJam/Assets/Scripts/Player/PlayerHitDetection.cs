@@ -8,6 +8,7 @@ public class PlayerHitDetection : MonoBehaviour {
     public SoundScript sounds;
     public Camera mainCam;
     public GameObject dogWeed;
+    public GameObject arcaine;
     Game game;
 
 	// Use this for initialization
@@ -27,12 +28,16 @@ public class PlayerHitDetection : MonoBehaviour {
         if (coll.tag == "Bar") {
             if (controlScript.state == PlayerControlScript.PlayerStates.Dashing) {
                 killEnemy (coll.gameObject);
-                sounds.PlaySong(AudioToPlay.Destroy);
+                sounds.PlaySong (AudioToPlay.Destroy);
                 if (Random.Range (0, 15) == 1) {
                     Instantiate
                     (dogWeed, coll.transform.position, Quaternion.identity);
                 }
-            }  else {
+                if (Random.Range (0, 15) == 1) {
+                    Instantiate
+                    (arcaine, coll.transform.position, Quaternion.identity);
+                }
+            } else {
                 controlScript.state = PlayerControlScript.PlayerStates.Dying;
                 if (game.lives <= 0) {
                     sounds.GameOver ();
@@ -40,8 +45,7 @@ public class PlayerHitDetection : MonoBehaviour {
                 }
                 sounds.PlaySong (AudioToPlay.GameOver);
             }
-        }
-        else if (coll.tag == "DeathCircle") {
+        } else if (coll.tag == "DeathCircle") {
             if (controlScript.state == PlayerControlScript.PlayerStates.DogWeed) {
                 sounds.PlaySong (AudioToPlay.SongA);
             }
@@ -54,6 +58,11 @@ public class PlayerHitDetection : MonoBehaviour {
             }
             controlScript.state = PlayerControlScript.PlayerStates.DogWeed;
             sounds.PlaySong (AudioToPlay.SongB);
+        } else if (coll.tag == "Arcaine") {
+            sounds.PlaySong (AudioToPlay.OneUp);
+            game.lives++;
+            game.livesLabel.text = string.Format ("Lives: {0}", game.lives);
+            Debug.Log ("ARCAINEEEE");
         }
     }
 }
