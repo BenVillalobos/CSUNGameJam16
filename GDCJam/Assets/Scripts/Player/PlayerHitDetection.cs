@@ -62,7 +62,6 @@ public class PlayerHitDetection : MonoBehaviour {
             sounds.PlaySong (AudioToPlay.OneUp);
             game.lives++;
             game.livesLabel.text = string.Format ("Lives: {0}", game.lives);
-            Debug.Log ("ARCAINEEEE");
         }
     }
 }
