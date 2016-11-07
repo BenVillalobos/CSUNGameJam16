@@ -8,7 +8,6 @@ public class StoryScript : MonoBehaviour {
     public GameObject storyImage;
     public Text blinkyText;
     float elapsedTime = 0;
-    public float showTimer = 30f;
     public float startScrollTimer = 1f;
 	// Use this for initialization
 	void Start () {
@@ -20,11 +19,10 @@ public class StoryScript : MonoBehaviour {
         
         elapsedTime += Time.deltaTime;
         if (elapsedTime >= startScrollTimer) {
-            if (blinkyText.enabled == false && elapsedTime >= showTimer) {
+            if (storyImage.transform.position.y <= 580) {
+                storyImage.transform.Translate (new Vector3 (0, 0.8f, 0));
+            } else {
                 blinkyText.enabled = true;
-            }
-            if (storyImage.transform.position.y <= 6.4) {
-                storyImage.transform.Translate (new Vector3 (0, 0.008f, 0));
             }
         }
         if ((Input.GetButtonDown ("Xbox Right Shoulder Button") || Input.GetButtonDown ("Xbox Left Shoulder Button"))
