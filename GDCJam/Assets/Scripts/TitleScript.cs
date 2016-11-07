@@ -25,4 +25,9 @@ public class TitleScript : MonoBehaviour
         storyCanvas.GetComponent<StoryScript> ().enabled = true;
         titleCanvas.enabled = false;
     }
+
+    public void CreditsPressed()
+    {
+        SceneManager.LoadScene("Credits", LoadSceneMode.Single);
+    }
 }
