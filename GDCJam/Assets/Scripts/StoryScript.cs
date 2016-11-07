@@ -20,7 +20,7 @@ public class StoryScript : MonoBehaviour {
         elapsedTime += Time.deltaTime;
         if (elapsedTime >= startScrollTimer) {
             if (storyImage.transform.position.y <= 580) {
-                storyImage.transform.Translate (new Vector3 (0, 0.8f, 0));
+                storyImage.transform.Translate (new Vector3 (0, 0.6f, 0));
             } else {
                 blinkyText.enabled = true;
             }
