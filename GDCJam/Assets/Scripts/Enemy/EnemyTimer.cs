@@ -20,7 +20,7 @@ public class EnemyTimer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        TimerLabel.text = string.Format ("{0}", Math.Round(timeForGame,3));
+        TimerLabel.text = string.Format ("Time: {0}", Math.Round(timeForGame,3));
         timeGoneBy += Time.deltaTime;
         timeForGame += Time.deltaTime;
 
